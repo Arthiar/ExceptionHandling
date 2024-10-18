@@ -8,6 +8,7 @@ public class RethrowExceptionHandlerTest {
 
     @Test
     public void testIOExceptionRethrown() {
+        System.out.println("Running test: testIOExceptionRethrown");
         RethrowExceptionHandler handler = new RethrowExceptionHandler();
         // Test that IOException is correctly re-thrown
         assertThrows(IOException.class, handler::handleAndRethrow);
@@ -15,6 +16,7 @@ public class RethrowExceptionHandlerTest {
 
     @Test
     public void testIOExceptionMessage() {
+        System.out.println("Running test: testIOExceptionMessage");
         RethrowExceptionHandler handler = new RethrowExceptionHandler();
         try {
             handler.handleAndRethrow();
@@ -26,6 +28,7 @@ public class RethrowExceptionHandlerTest {
 
     @Test
     public void testExceptionPropagation() {
+        System.out.println("Running test: testExceptionPropagation");
         RethrowExceptionHandler handler = new RethrowExceptionHandler();
         // Ensure that the exception propagates correctly after being re-thrown
         assertThrows(IOException.class, handler::handleAndRethrow);
@@ -33,6 +36,7 @@ public class RethrowExceptionHandlerTest {
 
     @Test
     public void testCatchAndReThrow() {
+        System.out.println("Running test: testCatchAndReThrow");
         RethrowExceptionHandler handler = new RethrowExceptionHandler();
         try {
             handler.handleAndRethrow();
@@ -44,6 +48,7 @@ public class RethrowExceptionHandlerTest {
 
     @Test
     public void testReThrowInMainHandling() {
+        System.out.println("Running test: testReThrowInMainHandling");
         RethrowExceptionHandler handler = new RethrowExceptionHandler();
         try {
             handler.handleAndRethrow();

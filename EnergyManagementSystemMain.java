@@ -2,17 +2,18 @@ package EnergyManagementSystemProject;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.File;
 
 public class EnergyManagementSystemMain {
 
     public static void main(String[] args) {
         // Instance creation
-        LogFileManager logManager = new LogFileManager();  // person 1
-        MetadataManager metadataManager = new MetadataManager();  // person 2
-        DataExchangeSimulator dataSimulator = new DataExchangeSimulator();  // person 3
+        LogFileManager logManager = new LogFileManager();
+        MetadataManager metadataManager = new MetadataManager();
+        DataExchangeSimulator dataSimulator = new DataExchangeSimulator();
 
-        MultipleExceptionHandler multipleExceptionHandler = new MultipleExceptionHandler();  // new
-        RethrowExceptionHandler rethrowExceptionHandler = new RethrowExceptionHandler();  // new
+        MultipleExceptionHandler multipleExceptionHandler = new MultipleExceptionHandler();
+        RethrowExceptionHandler rethrowExceptionHandler = new RethrowExceptionHandler();
 
         try {
             // File management actions
@@ -28,8 +29,14 @@ public class EnergyManagementSystemMain {
             System.out.println("Handling file exceptions...");
             multipleExceptionHandler.handleFileOperations("logs/StationA_Solar_log_" + getCurrentDate() + ".txt");
 
-            // Archive the log file into a .zip
-            logManager.archiveLog("StationA_Solar_log_" + getCurrentDate() + ".txt");
+            // Ensure the correct archive folder exists
+            File archiveFolder = new File("archived_logs");
+            if (!archiveFolder.exists()) {
+                archiveFolder.mkdir();  // Create the folder if it doesn't exist
+            }
+
+            // Archive the log file into the correct folder
+            logManager.archiveLog("archived_logs/StationA_Solar_log_" + getCurrentDate() + ".txt");
 
             System.out.println();
 
@@ -37,7 +44,7 @@ public class EnergyManagementSystemMain {
             System.out.println("===== Metadata Management =====");
             metadataManager.updateMetadata("CREATE", "StationA_Solar_log_" + getCurrentDate() + ".txt");
             metadataManager.updateMetadata("MOVE", "StationA_Solar_log_" + getCurrentDate() + ".txt");
-            metadataManager.updateMetadata("ARCHIVE", "StationA_Solar_log_" + getCurrentDate() + ".txt");
+            metadataManager.updateMetadata("ARCHIVE", "archived_logs/StationA_Solar_log_" + getCurrentDate() + ".txt");
             metadataManager.updateMetadata("DELETE", "StationA_Solar_log_" + getCurrentDate() + ".txt");
 
             System.out.println();
