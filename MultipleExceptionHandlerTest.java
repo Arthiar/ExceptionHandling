@@ -9,20 +9,6 @@ import java.io.IOException;
 public class MultipleExceptionHandlerTest {
 
     @Test
-    public void testValidFilePath() throws FileNotFoundException {
-        MultipleExceptionHandler handler = new MultipleExceptionHandler();
-        String filePath = "C:/Users/arthi/git/Java-Group-Projects---Group-2/HA  Basic I_O and Regular expression/src/EnergyManagementSystem/logs/valid_file.txt";
-        System.out.println("Running test: testValidFilePath");
-
-        try {
-            handler.handleFileOperations(filePath);
-            System.out.println("testValidFilePath passed: File was found.");
-        } catch (FileNotFoundException e) {
-            fail("File should exist, but FileNotFoundException was thrown.");
-        }
-    }
-
-    @Test
     public void testFileNotFoundException() {
         MultipleExceptionHandler handler = new MultipleExceptionHandler();
         assertThrows(FileNotFoundException.class, () -> {

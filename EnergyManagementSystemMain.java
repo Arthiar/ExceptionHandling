@@ -2,6 +2,10 @@ package EnergyManagementSystemProject;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+//import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+//import java.nio.file.Path;
+//import java.nio.file.Paths;
 import java.io.File;
 
 public class EnergyManagementSystemMain {
@@ -14,13 +18,19 @@ public class EnergyManagementSystemMain {
 
         MultipleExceptionHandler multipleExceptionHandler = new MultipleExceptionHandler();
         RethrowExceptionHandler rethrowExceptionHandler = new RethrowExceptionHandler();
-
+        ChainedExceptionHandler chainedExceptionHandler = new ChainedExceptionHandler();
+        
         try {
+        	
             // File management actions
             System.out.println("===== Log File Management =====");
 
             String[] stations = {"StationA", "StationB"};
             String[] sources = {"Solar", "Wind", "Hydro"};
+            
+            // Use java.nio.file.Files to trigger NoSuchFileException
+            // Path nonExistentFilePath = Paths.get("nonexistent_file.txt");
+            // Files.readAllBytes(nonExistentFilePath);  // This triggers NoSuchFileException
 
             // Create daily logs for all stations and sources
             logManager.createDailyLogs(stations, sources);
@@ -58,13 +68,42 @@ public class EnergyManagementSystemMain {
 
             // Open log file based on equipment name and date
             System.out.println("===== Search Log File =====");
-            logManager.openLogFile("StationA", getCurrentDate());
+            logManager.openLogFile("StationA", "Hydro", getCurrentDate());
 
-        } catch (FileNotFoundException e) {
+        } 
+        
+        catch (NoSuchFileException e) {
+            // Handle NoSuchFileException using ChainedExceptionHandler (this chains as IllegalArgumentException)
+            System.out.println("[DEBUG] Caught NoSuchFileException, passing to ChainedExceptionHandler.");
+            chainedExceptionHandler.handleNoSuchFileException(e);
+        }
+        
+        catch (FileNotFoundException e) {
             System.out.println("[ERROR] File not found during file handling: " + e.getMessage());
 
-        } catch (IOException e) {
+        }  
+        
+        catch (IOException e) {
             System.out.println("[ERROR] IOException during data handling: " + e.getMessage());
+        }
+        
+        catch (IllegalArgumentException e) {
+            // Handle IllegalArgumentException directly
+            System.out.println("[MAIN] Caught IllegalArgumentException: " + e.getMessage());
+
+            // Print the cause of the IllegalArgumentException (if any)
+            Throwable cause = e.getCause();
+            if (cause != null) {
+                System.out.println("Caused by: " + cause.getClass().getName() + ": " + cause.getMessage());
+            }
+        }
+        
+        catch (RuntimeException e) {
+            // Handle the re-thrown RuntimeException
+            System.out.println("[MAIN] Caught rethrown RuntimeException: " + e.getMessage());
+            if (e.getCause() != null) {
+                System.out.println("Caused by: " + e.getCause().getClass().getName() + ": " + e.getCause().getMessage());
+            }
         }
 
         // Rethrow Exception Handling
