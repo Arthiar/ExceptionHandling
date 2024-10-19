@@ -2,11 +2,19 @@ Group 2
 
 Team Members:
 
-(1) Arthisree saraswathi rajamanickam- 7216696
+(1) Arthisree Saraswathi Rajamanickam- 7216696
 
 (2) Monica Ponnappadhas Santhini - 7221964
 
 (3) Daranya Maniseharan - 7222079
+
+Role Distribution:
+
+(1) Arthisree - Handling Multiple Exceptions, Re-throwing Exceptions, Writing test cases for both, building the test suite
+
+(2) Monica - Resource Management, Writing test cases, video editing, README file preparation
+
+(3) Daranya - Chaining Exceptions, Writing test cases, Completing and testing the test suite, Project requirement file preparation
 
 - This project demonstrates exception handling in the context of an Energy Management System (EMS). It includes handling multiple exceptions, re-throwing exceptions, managing resources using try-with-resources, and chaining exceptions. Each team member has been assigned one of these topics to implement. We have also provided unit tests for each class, which are then combined into a test suite.
   Handling Multiple Exceptions: This task covers scenarios where multiple types of exceptions may be thrown in the same block, and how to handle them effectively.
