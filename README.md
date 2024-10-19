@@ -1,20 +1,30 @@
-1.  This project demonstrates exception handling in the context of an Energy Management System (EMS). It includes handling multiple exceptions, re-throwing exceptions, managing resources using try-with-resources, and chaining exceptions. Each team member has been assigned one of these topics to implement. We have also provided unit tests for each class, which are then combined into a test suite.
-    Handling Multiple Exceptions: This task covers scenarios where multiple types of exceptions may be thrown in the same block, and how to handle them effectively.
+Group 2
 
-- Implemented by:Aarthisree
+Team Members:
 
-2.  Re-throwing Exceptions: This involves catching exceptions, logging or handling them, and then re-throwing them for further processing.
+(1) Arthisree saraswathi rajamanickam- 7216696
 
-- Implemented by: Aarthi
+(2) Monica Ponnappadhas Santhini - 7221964
 
-3.  Resource Management: This part focuses on managing resources (like file streams) efficiently using the try-with-resources mechanism.
+(3) Daranya Maniseharan - 7222079
 
-- Implemented by: Monica
+- This project demonstrates exception handling in the context of an Energy Management System (EMS). It includes handling multiple exceptions, re-throwing exceptions, managing resources using try-with-resources, and chaining exceptions. Each team member has been assigned one of these topics to implement. We have also provided unit tests for each class, which are then combined into a test suite.
+  Handling Multiple Exceptions: This task covers scenarios where multiple types of exceptions may be thrown in the same block, and how to handle them effectively.
 
-4.  Chaining Exceptions: Chaining exceptions refers to wrapping one exception inside another to provide more context about an error.
+* Implemented by:Aarthisree
 
-- Implemented by: Daranya
+- Re-throwing Exceptions: This involves catching exceptions, logging or handling them, and then re-throwing them for further processing.
 
-5.  Unit Testing: Each feature is tested using JUnit. Five unit tests are created for each class to ensure proper exception handling.
+* Implemented by: Aarthi
 
-6.  Test Suite: All the unit tests are combined into a test suite for easy execution.
+- Resource Management: This part focuses on managing resources (like file streams) efficiently using the try-with-resources mechanism.
+
+* Implemented by: Monica
+
+- Chaining Exceptions: Chaining exceptions refers to wrapping one exception inside another to provide more context about an error.
+
+* Implemented by: Daranya
+
+- Unit Testing: Each feature is tested using JUnit. Five unit tests are created for each class to ensure proper exception handling.
+
+- Test Suite: All the unit tests are combined into a test suite for easy execution.
