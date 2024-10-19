@@ -1,8 +1,9 @@
 package EnergyManagementSystemProject;
 
-import org.junit.Test;
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -32,7 +33,7 @@ public class MultipleExceptionHandlerTest {
             handler.handleFileOperations(filePath);
             fail("Expected a FileNotFoundException due to non-existent or restricted file.");
         } catch (FileNotFoundException e) {
-            assert(e.getMessage().contains("non_existent_or_restricted_file.txt"));
+            assertTrue(e.getMessage().contains("non_existent_or_restricted_file.txt"));
         }
     }
 
@@ -51,7 +52,7 @@ public class MultipleExceptionHandlerTest {
             handler.simulateIOException("logs/simulated_io_exception.txt");
         } catch (IOException e) {
             System.out.println("testIOExceptionHandling caught expected exception.");
-            assert(e.getMessage().contains("Simulated IO Exception"));
+            assertTrue(e.getMessage().contains("Simulated IO Exception"));
         }
     }
 
@@ -62,7 +63,7 @@ public class MultipleExceptionHandlerTest {
             handler.simulateSecurityException("logs/restricted_access_file.txt");
             fail("Expected SecurityException due to restricted access.");
         } catch (SecurityException e) {
-            assert(e.getMessage().contains("Access denied"));
+            assertTrue(e.getMessage().contains("Access denied"));
         }
     }
 }

@@ -6,7 +6,8 @@ import org.junit.platform.suite.api.Suite;
 @Suite
 @SelectClasses({
     MultipleExceptionHandlerTest.class,
-    RethrowExceptionHandlerTest.class,   
+    RethrowExceptionHandlerTest.class,  
+    LogFileReaderTest.class,
     ChainedExceptionHandlerTest.class 
 })
 public class EnergyManagementTestSuite {

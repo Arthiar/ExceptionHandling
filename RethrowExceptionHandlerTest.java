@@ -1,7 +1,8 @@
 package EnergyManagementSystemProject;
 
-import org.junit.Test;
-import static org.junit.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 
 public class RethrowExceptionHandlerTest {
@@ -22,7 +23,7 @@ public class RethrowExceptionHandlerTest {
             handler.handleAndRethrow();
         } catch (IOException e) {
             // Test that the exception message is correct
-            assert(e.getMessage().contains("Simulated IO Exception"));
+            assertTrue(e.getMessage().contains("Simulated IO Exception"));
         }
     }
 
@@ -42,7 +43,7 @@ public class RethrowExceptionHandlerTest {
             handler.handleAndRethrow();
         } catch (IOException e) {
             // Ensure that the re-thrown exception is caught properly
-            assert(e.getMessage().equals("Simulated IO Exception"));
+            assertTrue(e.getMessage().equals("Simulated IO Exception"));
         }
     }
 
