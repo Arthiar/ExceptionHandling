@@ -18,6 +18,7 @@ public class EnergyManagementSystemMain {
 
         MultipleExceptionHandler multipleExceptionHandler = new MultipleExceptionHandler();
         RethrowExceptionHandler rethrowExceptionHandler = new RethrowExceptionHandler();
+        LogFileReader logFileReader = new LogFileReader();
         ChainedExceptionHandler chainedExceptionHandler = new ChainedExceptionHandler();
         
         try {
@@ -69,6 +70,10 @@ public class EnergyManagementSystemMain {
             // Open log file based on equipment name and date
             System.out.println("===== Search Log File =====");
             logManager.openLogFile("StationA", "Hydro", getCurrentDate());
+            
+            // Reading the log file using LogFileReader
+            System.out.println("===== Read Log File Content =====");
+            logFileReader.readLogFile("logs/StationA_Solar_log_" + getCurrentDate() + ".txt");
 
         } 
         
