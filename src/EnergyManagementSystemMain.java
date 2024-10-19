@@ -30,8 +30,8 @@ public class EnergyManagementSystemMain {
             String[] sources = {"Solar", "Wind", "Hydro"};
             
             // Use java.nio.file.Files to trigger NoSuchFileException
-            // Path nonExistentFilePath = Paths.get("nonexistent_file.txt");
-            // Files.readAllBytes(nonExistentFilePath);  // This triggers NoSuchFileException
+            //Path nonExistentFilePath = Paths.get("nonexistent_file.txt");
+            //Files.readAllBytes(nonExistentFilePath);  // This triggers NoSuchFileException
 
             // Create daily logs for all stations and sources
             logManager.createDailyLogs(stations, sources);
@@ -78,9 +78,37 @@ public class EnergyManagementSystemMain {
         } 
         
         catch (NoSuchFileException e) {
-            // Handle NoSuchFileException using ChainedExceptionHandler (this chains as IllegalArgumentException)
-            System.out.println("[DEBUG] Caught NoSuchFileException, passing to ChainedExceptionHandler.");
-            chainedExceptionHandler.handleNoSuchFileException(e);
+        	
+        	try {
+        		// Handle NoSuchFileException using ChainedExceptionHandler (this chains as IllegalArgumentException)
+        		System.out.println("[DEBUG] Caught NoSuchFileException, passing to ChainedExceptionHandler.");
+        		chainedExceptionHandler.handleNoSuchFileException(e);
+        	} 
+        	
+        	catch (IllegalArgumentException e1) {
+        		
+        		try {
+        			System.out.println("[DEBUG] Caught IllegalArgumentException, passing to ChainedExceptionHandler.");
+        			chainedExceptionHandler.handleIllegalArgumentException(e1);  // This will re-throw as RuntimeException  
+        		}
+        		
+        		catch (RuntimeException e11) {
+        			
+        			try {
+        				// Handle the re-thrown RuntimeException
+        				System.out.println("[MAIN] Caught rethrown RuntimeException: " + e11.getMessage());
+        				if (e11.getCause() != null) {
+        					System.out.println("Caused by: " + e11.getCause().getClass().getName() + ": " + e11.getCause().getMessage());
+        				}
+        			} 
+        			
+        			catch (Exception e111) {
+        	            System.out.println("[DEBUG] Caught unexpected exception: " + e111.getClass().getName() + ": " + e111.getMessage());
+        	        }
+                }		
+        		
+        	}
+        	
         }
         
         catch (FileNotFoundException e) {
@@ -92,26 +120,8 @@ public class EnergyManagementSystemMain {
             System.out.println("[ERROR] IOException during data handling: " + e.getMessage());
         }
         
-        catch (IllegalArgumentException e) {
-            // Handle IllegalArgumentException directly
-            System.out.println("[MAIN] Caught IllegalArgumentException: " + e.getMessage());
 
-            // Print the cause of the IllegalArgumentException (if any)
-            Throwable cause = e.getCause();
-            if (cause != null) {
-                System.out.println("Caused by: " + cause.getClass().getName() + ": " + cause.getMessage());
-            }
-        }
-        
-        catch (RuntimeException e) {
-            // Handle the re-thrown RuntimeException
-            System.out.println("[MAIN] Caught rethrown RuntimeException: " + e.getMessage());
-            if (e.getCause() != null) {
-                System.out.println("Caused by: " + e.getCause().getClass().getName() + ": " + e.getCause().getMessage());
-            }
-        }
-
-        // Rethrow Exception Handling
+        // Re-throw Exception Handling
         try {
             System.out.println("Handling and rethrowing exception...");
             rethrowExceptionHandler.handleAndRethrow();
